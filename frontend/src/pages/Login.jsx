@@ -3,7 +3,7 @@ import { sendOtp } from "../api/auth.js";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const [email, setEmail] = useState("tarushi.chaudhary@shaurryatele.com");
+  const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [otpCode, setOtpCode] = useState("");
