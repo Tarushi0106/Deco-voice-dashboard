@@ -1,0 +1,304 @@
+/* ── Cards grid ─────────────────────────────────────── */
+.kb-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 900px;
+}
+
+.kb-card {
+  background: #fff;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 0;
+  cursor: pointer;
+  transition: box-shadow 0.15s, border-color 0.15s;
+  overflow: hidden;
+  text-align: left;
+}
+.kb-card:hover {
+  box-shadow: 0 4px 20px rgba(52, 100, 255, 0.12);
+  border-color: #c7d7ff;
+}
+
+.kb-card-icon-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+  background: #fafafa;
+  border-bottom: 1.5px solid #f0f0f0;
+}
+
+.kb-card-body {
+  padding: 18px 20px 20px;
+}
+.kb-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 4px;
+}
+.kb-card-sub {
+  font-size: 13px;
+  color: #9ca3af;
+  margin: 0;
+}
+
+/* ── Modal overlay ──────────────────────────────────── */
+.kb-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+}
+
+.kb-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+}
+
+/* Modal header */
+.kb-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 22px 24px 18px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.kb-modal-title-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.kb-modal-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.kb-modal-title { font-size: 16px; font-weight: 700; color: #111827; margin: 0 0 3px; }
+.kb-modal-sub   { font-size: 13px; color: #9ca3af; margin: 0; }
+
+.kb-close-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  transition: background 0.12s;
+}
+.kb-close-btn:hover { background: #f3f4f6; color: #111827; }
+
+/* Modal body */
+.kb-modal-body { padding: 20px 24px 24px; }
+
+/* Tab switcher */
+.kb-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 18px;
+}
+.kb-tab {
+  padding: 11px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+.kb-tab.active  { background: #3464ff; color: #fff; }
+.kb-tab.inactive {
+  background: #fff;
+  color: #9ca3af;
+  border-left: 1px solid #e5e7eb;
+}
+.kb-tab.inactive:first-child { border-left: none; border-right: 1px solid #e5e7eb; }
+
+/* Drop zone */
+.kb-dropzone {
+  border: 2px dashed #d1d5db;
+  border-radius: 12px;
+  padding: 28px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  margin-bottom: 18px;
+}
+.kb-dropzone.dragging {
+  border-color: #3464ff;
+  background: #f0f4ff;
+}
+.kb-dropzone-text {
+  font-size: 13.5px;
+  color: #374151;
+  margin: 12px 0 4px;
+}
+.kb-dropzone-text .blue { color: #3464ff; font-weight: 600; }
+.kb-dropzone-hint { font-size: 12px; color: #9ca3af; margin: 0; }
+
+/* URL input */
+.kb-url-input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #374151;
+  outline: none;
+  transition: border-color 0.15s;
+  margin-bottom: 18px;
+  box-sizing: border-box;
+}
+.kb-url-input:focus { border-color: #3464ff; }
+.kb-url-input::placeholder { color: #9ca3af; }
+
+/* File list */
+.kb-file-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+
+.kb-file-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+.kb-file-icon {
+  font-size: 13px;
+  font-weight: 700;
+  color: #3464ff;
+  background: #eff6ff;
+  border-radius: 6px;
+  padding: 4px 6px;
+  flex-shrink: 0;
+}
+.kb-file-info { flex: 1; min-width: 0; }
+.kb-file-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.kb-file-size { font-size: 12px; color: #9ca3af; margin-top: 2px; }
+
+.kb-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+.kb-progress-bar {
+  flex: 1;
+  height: 5px;
+  background: #e5e7eb;
+  border-radius: 99px;
+  overflow: hidden;
+}
+.kb-progress-fill {
+  height: 100%;
+  background: #22c55e;
+  border-radius: 99px;
+  transition: width 0.2s;
+}
+.kb-progress-pct { font-size: 11px; color: #6b7280; white-space: nowrap; }
+
+.kb-file-action {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  transition: color 0.12s;
+  flex-shrink: 0;
+}
+.kb-file-action:hover { color: #374151; }
+
+/* Language support */
+.kb-lang-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 10px;
+}
+.kb-lang-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+
+.kb-lang-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1.5px solid #e5e7eb;
+  cursor: pointer;
+  transition: border-color 0.12s, background 0.12s;
+}
+.kb-lang-option.selected {
+  border-color: #3464ff;
+  background: #f0f4ff;
+}
+.kb-lang-option-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+.kb-lang-option.selected .kb-lang-option-text { color: #3464ff; }
+
+.kb-lang-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.kb-lang-option.selected .kb-lang-check {
+  border-color: #3464ff;
+  background: #3464ff;
+}
+
+/* Modal footer */
+.kb-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+.kb-upload-btn {
+  background: #3464ff;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.kb-upload-btn:hover { background: #2451e0; }
