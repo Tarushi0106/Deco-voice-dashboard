@@ -29,7 +29,10 @@ export default function Layout({ children, searchPlaceholder = "Search..." }) {
         const raw = p?.name || p?.email || "U";
         setInitials(raw[0].toUpperCase());
       })
-      .catch(() => { window.location.href = "/login"; });
+      .catch(() => {
+      localStorage.removeItem("token");
+      navigate("/login", { replace: true });
+    });
   }, []);
 
   const activeKey =

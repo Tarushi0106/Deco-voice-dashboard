@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import { fetchProfile } from "../api/auth.js";
 import Layout from "../components/Layout.jsx";
 import Icon from "../components/Icon.jsx";
 import "./Dashboard.css";
@@ -125,22 +123,6 @@ function MiniGauge({ pct }) {
 
 // ── Dashboard ───────────────────────────────────────────────────────────
 export default function Dashboard() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchProfile()
-      .then(() => setLoading(false))
-      .catch(() => { window.location.href = "/login"; });
-  }, []);
-
-  if (loading) {
-    return (
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100vh", color: "#3464ff" }}>
-        Loading…
-      </div>
-    );
-  }
-
   return (
     <Layout>
       <div className="dv-page-title">
