@@ -32,7 +32,7 @@ const SCRIPTS = [
   },
   {
     id: 3,
-    name: "Sales support",
+    name: "HR support",
     type: "Personalized script",
     badge: "active",
     primaryLang: "English",
@@ -56,7 +56,7 @@ const SCRIPTS = [
   },
   {
     id: 5,
-    name: "Sales support",
+    name: "HR support",
     type: "Personalized script",
     badge: "active",
     primaryLang: "English",
