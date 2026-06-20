@@ -582,12 +582,12 @@ function NewScriptModal({ onClose, onCreated }) {
 
 // ── Page ────────────────────────────────────────────────────────────────
 export default function ScriptManagement() {
-  const [showCreate, setShowCreate]     = useState(false);
+  const [showNewModal, setShowNewModal] = useState(false);
   const [showToast, setShowToast]       = useState(false);
   const [scriptStatus, setScriptStatus] = useState(null); // null | "pending" | "approved"
 
   const handleCreated = () => {
-    setShowCreate(false);
+    setShowNewModal(false);
     setScriptStatus("pending");
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
@@ -605,58 +605,53 @@ export default function ScriptManagement() {
         </div>
       )}
 
-      {showCreate ? (
-        <CreateScriptWizard
-          onBack={() => setShowCreate(false)}
-          onCreated={handleCreated}
-        />
-      ) : (
-        <>
-          {/* Page header */}
-          <div className="sm-page-header">
-            <div className="dv-page-title" style={{ margin: 0 }}>
-              <h2>Scripts</h2>
-              <p>Customize your AI agent settings and voice preferences</p>
-            </div>
-            <button className="sm-new-btn" onClick={() => setShowCreate(true)}>
-              + New Script
-            </button>
-          </div>
+      {/* Page header */}
+      <div className="sm-page-header">
+        <div className="dv-page-title" style={{ margin: 0 }}>
+          <h2>Scripts</h2>
+          <p>Customize your AI agent settings and voice preferences</p>
+        </div>
+        <button className="sm-new-btn" onClick={() => setShowNewModal(true)}>
+          + New Script
+        </button>
+      </div>
 
-          {/* Status banners */}
-          {scriptStatus === "pending" && (
-            <div className="sm-status-banner sm-banner-pending">
-              <div className="sm-banner-icon sm-banner-icon-pending">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="#d97706">
-                  <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
-                </svg>
-              </div>
-              <div className="sm-banner-text">
-                <p className="sm-banner-title">1 script pending approval</p>
-                <p className="sm-banner-sub">Your script is under review. Campaign require at least one approved script</p>
-              </div>
-            </div>
-          )}
-          {scriptStatus === "approved" && (
-            <div className="sm-status-banner sm-banner-approved">
-              <div className="sm-banner-icon sm-banner-icon-approved">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="#16a34a">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                </svg>
-              </div>
-              <div className="sm-banner-text">
-                <p className="sm-banner-title sm-banner-title-approved">1 script approved</p>
-                <p className="sm-banner-sub">Your script is approved. Use it for campaign</p>
-              </div>
-              <button className="sm-create-campaign-btn" onClick={() => {}}>Create campaign</button>
-            </div>
-          )}
-
-          {/* Scripts grid */}
-          <div className="sm-grid">
-            {SCRIPTS.map((s) => <ScriptCard key={s.id} script={s} />)}
+      {/* Status banners */}
+      {scriptStatus === "pending" && (
+        <div className="sm-status-banner sm-banner-pending">
+          <div className="sm-banner-icon sm-banner-icon-pending">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#d97706">
+              <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+            </svg>
           </div>
-        </>
+          <div className="sm-banner-text">
+            <p className="sm-banner-title">1 script pending approval</p>
+            <p className="sm-banner-sub">Your script is under review. Campaign require at least one approved script</p>
+          </div>
+        </div>
+      )}
+      {scriptStatus === "approved" && (
+        <div className="sm-status-banner sm-banner-approved">
+          <div className="sm-banner-icon sm-banner-icon-approved">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#16a34a">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+            </svg>
+          </div>
+          <div className="sm-banner-text">
+            <p className="sm-banner-title sm-banner-title-approved">1 script approved</p>
+            <p className="sm-banner-sub">Your script is approved. Use it for campaign</p>
+          </div>
+          <button className="sm-create-campaign-btn" onClick={() => {}}>Create campaign</button>
+        </div>
+      )}
+
+      {/* Scripts grid */}
+      <div className="sm-grid">
+        {SCRIPTS.map((s) => <ScriptCard key={s.id} script={s} />)}
+      </div>
+
+      {showNewModal && (
+        <NewScriptModal onClose={() => setShowNewModal(false)} onCreated={handleCreated} />
       )}
     </Layout>
   );
