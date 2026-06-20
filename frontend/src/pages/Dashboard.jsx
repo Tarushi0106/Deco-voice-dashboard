@@ -68,7 +68,7 @@ function CallVolumeChart() {
 }
 
 function CampaignInsightChart() {
-  const r = 48, sw = 13, size = 130, c = 65;
+  const r = 34, sw = 10, size = 90, c = 45;
   const circ = 2 * Math.PI * r;
   const rings = [
     { label: "Engagement",     value: "78%", pct: 0.78, track: "#c7caf0", fill: "#3b3fa8" },
@@ -85,7 +85,7 @@ function CampaignInsightChart() {
               strokeDasharray={`${ring.pct * circ} ${circ}`}
               strokeLinecap="round"
               transform={`rotate(-90 ${c} ${c})`} />
-            <text x={c} y={c + 7} textAnchor="middle" fontSize="17" fontWeight="700" fill="#111827">
+            <text x={c} y={c + 5} textAnchor="middle" fontSize="14" fontWeight="700" fill="#111827">
               {ring.value}
             </text>
           </svg>
