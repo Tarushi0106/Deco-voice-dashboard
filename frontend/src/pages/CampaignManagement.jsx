@@ -16,7 +16,6 @@ const CAMPAIGNS = [
 ];
 
 const SCRIPTS    = ["Customer Support", "Appointment Booking", "Lead Qualification", "Lead Follow-up", "Sales voice"];
-const INDUSTRIES = ["Customer Support", "Booking", "Lead Qualification", "Lead Follow-up", "Sales voice"];
 const LANGUAGES  = ["English", "Hindi"];
 
 const SCRIPT_PREVIEWS = {
@@ -96,7 +95,7 @@ function Dropdown({ placeholder, options, value, onChange }) {
 // ── Create Campaign Modal (3 steps) ─────────────────────────────────────
 function CreateCampaignModal({ onClose }) {
   const [step, setStep] = useState(1);
-  const [form, setForm] = useState({ name: "", script: "", industry: "", language: "", phones: "" });
+  const [form, setForm] = useState({ name: "", script: "", phones: "" });
 
   useEffect(() => {
     const h = (e) => { if (e.key === "Escape") onClose(); };
@@ -106,7 +105,7 @@ function CreateCampaignModal({ onClose }) {
 
   const set = (key) => (val) => setForm((p) => ({ ...p, [key]: val }));
 
-  const step1Valid = form.name.trim().length > 0 && (form.script || form.industry);
+  const step1Valid = form.name.trim().length > 0 && form.script;
   const step2Valid = form.phones.trim().split("\n").filter(Boolean).length > 0;
   const canNext = step === 1 ? step1Valid : step === 2 ? step2Valid : true;
 
@@ -160,20 +159,6 @@ function CreateCampaignModal({ onClose }) {
                   <div className="cm-script-preview">{SCRIPT_PREVIEWS[form.script]}</div>
                 )}
               </div>
-
-              <div className="cm-or-divider"><span>or</span></div>
-
-              <div className="cm-field">
-                <label>Industry<span style={{ color: "#ef4444" }}>*</span></label>
-                <Dropdown placeholder="Select industry" options={INDUSTRIES} value={form.industry} onChange={set("industry")} />
-              </div>
-
-              {form.industry && (
-                <div className="cm-field">
-                  <label>Language<span style={{ color: "#ef4444" }}>*</span></label>
-                  <Dropdown placeholder="Select language" options={LANGUAGES} value={form.language} onChange={set("language")} />
-                </div>
-              )}
             </>
           )}
 
@@ -201,8 +186,6 @@ function CreateCampaignModal({ onClose }) {
               {[
                 ["Campaign name", form.name],
                 ["Script",        form.script   || "—"],
-                ["Industry",      form.industry || "—"],
-                ["Language",      form.language || "English"],
                 ["Phone numbers", `${form.phones.split("\n").filter(Boolean).length} number(s)`],
               ].map(([label, val]) => (
                 <div key={label} className="cm-review-row">

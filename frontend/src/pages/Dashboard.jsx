@@ -13,16 +13,6 @@ const WEEK_LINE = [
   { label: "Sun", v: 1950 },
 ];
 
-const CALL_BARS = [
-  { label: "04/05", v: 2200 },
-  { label: "05/05", v: 1500 },
-  { label: "06/05", v: 2000 },
-  { label: "07/05", v: 2700 },
-  { label: "08/05", v: 2100 },
-  { label: "09/05", v: 480 },
-  { label: "10/05", v: 1200 },
-];
-
 const RECENT = [
   { bg: "#fff7ed", text: 'Campaign "summer offer" launched',  time: "2 mins ago",  svg: "campaign"  },
   { bg: "#f5f3ff", text: 'New script "Product demo" created', time: "15 mins ago", svg: "script"    },
@@ -77,34 +67,32 @@ function CallVolumeChart() {
   );
 }
 
-function CallBarsChart() {
-  const W = 360, H = 210;
-  const pl = 36, pr = 8, pt = 14, pb = 34;
-  const cW = W - pl - pr, cH = H - pt - pb;
-  const yMax = 3000;
-  const gap = cW / CALL_BARS.length;
-  const bw = gap * 0.52;
-  const x = (i) => pl + i * gap + (gap - bw) / 2;
-  const y = (v) => pt + (1 - v / yMax) * cH;
-  const bh = (v) => (v / yMax) * cH;
-  const yTicks = [0, 500, 1000, 1500, 2000, 2500];
-  const fmt = (v) => v === 0 ? "0" : v >= 1000 ? `${v / 1000}K` : `${v}`;
-
+function CampaignInsightChart() {
+  const r = 48, sw = 13, size = 130, c = 65;
+  const circ = 2 * Math.PI * r;
+  const rings = [
+    { label: "Engagement",     value: "78%", pct: 0.78, track: "#c7caf0", fill: "#3b3fa8" },
+    { label: "Connection rate", value: "2/5", pct: 0.40, track: "#b3e5fc", fill: "#7ecef4" },
+    { label: "Completion rate", value: "26%", pct: 0.26, track: "#c9dafd", fill: "#3464ff" },
+  ];
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", display: "block" }}>
-      {yTicks.map((v) => (
-        <g key={v}>
-          <line x1={pl} y1={y(v)} x2={W - pr} y2={y(v)} stroke="#f0f0f0" strokeWidth="1" />
-          <text x={pl - 4} y={y(v) + 4} textAnchor="end" fontSize="9" fill="#9ca3af">{fmt(v)}</text>
-        </g>
+    <div style={{ display: "flex", justifyContent: "space-around", alignItems: "flex-start", padding: "18px 8px 12px" }}>
+      {rings.map((ring, i) => (
+        <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
+          <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+            <circle cx={c} cy={c} r={r} fill="none" stroke={ring.track} strokeWidth={sw} />
+            <circle cx={c} cy={c} r={r} fill="none" stroke={ring.fill} strokeWidth={sw}
+              strokeDasharray={`${ring.pct * circ} ${circ}`}
+              strokeLinecap="round"
+              transform={`rotate(-90 ${c} ${c})`} />
+            <text x={c} y={c + 7} textAnchor="middle" fontSize="17" fontWeight="700" fill="#111827">
+              {ring.value}
+            </text>
+          </svg>
+          <span style={{ fontSize: 12, color: "#6b7280", textAlign: "center" }}>{ring.label}</span>
+        </div>
       ))}
-      {CALL_BARS.map((d, i) => (
-        <g key={i}>
-          <rect x={x(i)} y={y(d.v)} width={bw} height={bh(d.v)} rx="6" fill="#b8caff" />
-          <text x={x(i) + bw / 2} y={H - pb + 16} textAnchor="middle" fontSize="9" fill="#9ca3af">{d.label}</text>
-        </g>
-      ))}
-    </svg>
+    </div>
   );
 }
 
@@ -222,10 +210,9 @@ export default function Dashboard() {
 
         <div className="dv-card">
           <div className="dv-card-header">
-            <span className="dv-card-title">Call over time</span>
-            <button className="dv-dropdown-btn">This week ▾</button>
+            <span className="dv-card-title">Recent campaign insight</span>
           </div>
-          <CallBarsChart />
+          <CampaignInsightChart />
         </div>
       </div>
     </Layout>

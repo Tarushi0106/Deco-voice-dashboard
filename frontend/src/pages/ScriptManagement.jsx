@@ -79,42 +79,6 @@ const SCRIPTS = [
     previewBody:
       "To help you with the right project, please choose an option: Press 1 for Windsor County — shops and showrooms...",
   },
-  {
-    id: 7,
-    name: "Sales support",
-    type: "Personalized script",
-    badge: "active",
-    primaryLang: "English",
-    secondaryLang: "Hindi",
-    voice: "Female",
-    previewTitle: "Welcome — Hi, I am calling from MFONLINE & I see...",
-    previewBody:
-      "Mutual Funds are powerful tool to create wealth in long term and achieve your financial goals...",
-  },
-  {
-    id: 8,
-    name: "Lead Follow-up",
-    type: "Personalized script",
-    badge: "active",
-    primaryLang: "English",
-    secondaryLang: "Hindi",
-    voice: "Female",
-    previewTitle: "Welcome — MBBS Admissions are Started Now",
-    previewBody:
-      "Hello, my name is Ankita from Phoenix Overseas Consultancy. We help students secure admission in internationally recognized medical universities...",
-  },
-  {
-    id: 9,
-    name: "Appointment Booking",
-    type: "Personalized script",
-    badge: "active",
-    primaryLang: "English",
-    secondaryLang: "Hindi",
-    voice: "Female",
-    previewTitle: "Welcome — Hi, this is scheduling assistant",
-    previewBody:
-      "I am calling to confirm your appointment. Would you like to reschedule or confirm your booking for this week?",
-  },
 ];
 
 const LANGUAGES = ["English", "Hindi", "Marathi", "Tamil", "Telugu", "Kannada", "Bengali", "Gujarati"];
