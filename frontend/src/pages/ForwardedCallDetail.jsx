@@ -6,7 +6,7 @@ const DETAIL_DATA = {
   0: {
     campaign: "Appointment Booking",
     contact: "+91 7985738248",
-    forwardedTo: "Booking team",
+    forwardedTo: "Human agent",
     duration: "4min 2sec",
     status: "completed",
     date: "18 June 2024, 10:00 AM",
@@ -14,7 +14,7 @@ const DETAIL_DATA = {
   1: {
     campaign: "Customer support",
     contact: "+91 7985738248",
-    forwardedTo: "Recruiter team",
+    forwardedTo: "Human agent",
     duration: "1min 0sec",
     status: "completed",
     date: "18 June 2024, 10:15 AM",
@@ -22,10 +22,10 @@ const DETAIL_DATA = {
 };
 
 const TRANSCRIPT = [
-  { speaker: "Booking team", text: "Content will appear here. Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here." },
-  { speaker: "Customer",     text: "Content will appear here. Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here." },
-  { speaker: "Booking team", text: "Content will appear here. Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here." },
-  { speaker: "Customer",     text: "Content will appear here. Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here." },
+  { speaker: "Human agent", text: "Content will appear here. Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here." },
+  { speaker: "Customer",    text: "Content will appear here. Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here." },
+  { speaker: "Human agent", text: "Content will appear here. Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here." },
+  { speaker: "Customer",    text: "Content will appear here. Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here." },
 ];
 
 const META_ICONS = {

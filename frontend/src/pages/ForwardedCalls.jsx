@@ -4,8 +4,8 @@ import Layout from "../components/Layout.jsx";
 import "./ForwardedCalls.css";
 
 const ROWS = [
-  { campaign: "Appointment  Booking", contact: "+91 7805723XXXX", forwardedTo: "Booking team",   duration: "2m 20s", status: "completed" },
-  { campaign: "Customer support",     contact: "+91 7805723XXXX", forwardedTo: "Recruiter team", duration: "1m",     status: "completed" },
+  { id: 0, campaign: "Appointment  Booking", contact: "+91 7805723XXXX", forwardedTo: "Human agent", forwardedOn: "19 June  5:16 PM", status: "completed" },
+  { id: 1, campaign: "Customer support",     contact: "+91 7805723XXXX", forwardedTo: "Human agent", forwardedOn: "19 June  5:40 PM", status: "completed" },
 ];
 
 const STATUS_FILTER_MAP = { Completed: "completed", Running: "running", Queued: "queued" };
@@ -104,7 +104,7 @@ export default function ForwardedCalls() {
           <span>Campaign name</span>
           <span>Contact no.</span>
           <span>Forwarded to</span>
-          <span>Duration</span>
+          <span>Forwarded on</span>
           <span>Status</span>
           <span>Action</span>
         </div>
@@ -112,19 +112,19 @@ export default function ForwardedCalls() {
         <div className="fc-table-body">
           {rows.length === 0 ? (
             <p className="fc-empty">No records found.</p>
-          ) : rows.map((row, i) => (
-            <div key={i} className="fc-table-row">
+          ) : rows.map((row) => (
+            <div key={row.id} className="fc-table-row">
               <span className="fc-td fc-td-name">{row.campaign}</span>
               <span className="fc-td">{row.contact}</span>
               <span className="fc-td">{row.forwardedTo}</span>
-              <span className="fc-td">{row.duration}</span>
+              <span className="fc-td">{row.forwardedOn}</span>
               <span className="fc-td">
                 <span className={`fc-status-pill ${row.status}`}>
                   {row.status.charAt(0).toUpperCase() + row.status.slice(1)}
                 </span>
               </span>
               <span className="fc-td">
-                <button className="fc-view-btn" onClick={() => navigate(`/forwarding/${i}`)}>
+                <button className="fc-view-btn" onClick={() => navigate(`/forwarding/${row.id}`)}>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
                   </svg>
