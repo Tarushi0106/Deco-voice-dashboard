@@ -180,7 +180,14 @@ export default function CampaignDetail() {
             <span className="cd-ov-label">Transfers</span>
           </div>
 
-          {/* Card 5: Engagement donut */}
+          {/* Card 5: Total leads */}
+          <div className="cd-ov-card cd-ov-stat">
+            <div className="cd-ov-icon">{STAT_ICONS.leads}</div>
+            <span className="cd-ov-value">{camp.totalLeads}</span>
+            <span className="cd-ov-label">Total leads</span>
+          </div>
+
+          {/* Card 6: Engagement donut */}
           <div className="cd-ov-card cd-ov-donut">
             <DonutChart a={camp.engaged} b={camp.notEngaged} />
             <div className="cd-ov-donut-legend">
