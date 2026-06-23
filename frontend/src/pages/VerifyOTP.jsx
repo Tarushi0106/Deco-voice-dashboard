@@ -87,9 +87,6 @@ export default function VerifyOTP() {
         <p className="muted">Enter the OTP sent to {email}</p>
 
         <form onSubmit={handleSubmit} className="auth-form otp-form">
-          <label>Email</label>
-          <input value={email} type="email" readOnly />
-
           <label>Enter OTP</label>
           <div className="otp-row">
             {otp.map((val, i) => (
