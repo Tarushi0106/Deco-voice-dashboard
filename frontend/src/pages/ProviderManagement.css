@@ -57,9 +57,9 @@
   box-shadow: 0 2px 8px rgba(52,100,255,0.1);
 }
 
-.pm-provider-icon {
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
+.pm-provider-img {
+  width: 22px; height: 22px;
+  object-fit: contain; flex-shrink: 0;
 }
 
 @media (max-width: 900px) {
