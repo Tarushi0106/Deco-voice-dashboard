@@ -7,16 +7,14 @@ import prisma from "../db.js";
 const router = express.Router();
 const otpStore = {};
 
-const isEmailConfigured = Boolean(
-  process.env.EMAIL_HOST &&
-  process.env.EMAIL_USER &&
-  process.env.EMAIL_PASS &&
-  process.env.OTP_FROM
-);
+let _transporter = null;
 
-let transporter;
-if (isEmailConfigured) {
-  transporter = nodemailer.createTransport({
+function getTransporter() {
+  if (_transporter) return _transporter;
+  if (!process.env.EMAIL_HOST || !process.env.EMAIL_USER || !process.env.EMAIL_PASS || !process.env.OTP_FROM) {
+    return null;
+  }
+  _transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
     port: Number(process.env.EMAIL_PORT || 587),
     secure: process.env.EMAIL_SECURE === "true",
@@ -25,6 +23,7 @@ if (isEmailConfigured) {
       pass: process.env.EMAIL_PASS,
     },
   });
+  return _transporter;
 }
 
 const generateOTP = () => String(Math.floor(1000 + Math.random() * 9000));
@@ -33,15 +32,25 @@ async function sendOtpEmail(email, code) {
   const message = {
     from: process.env.OTP_FROM || "no-reply@decovoice.local",
     to: email,
-    subject: "Your DecoVoice OTP code",
-    text: `Your DecoVoice OTP is ${code}. It expires in 5 minutes.`,
-    html: `<p>Your DecoVoice OTP is <strong>${code}</strong>.</p><p>It expires in 5 minutes.</p>`,
+    subject: "Your Login OTP Code",
+    text: `Your login OTP is ${code}. It expires in 5 minutes. Do not share this code with anyone.`,
+    html: `
+      <div style="font-family:Arial,sans-serif;max-width:480px;margin:0 auto;padding:32px;background:#f9f9f9;border-radius:8px;">
+        <h2 style="color:#1a1a1a;margin-bottom:8px;">Your Login OTP</h2>
+        <p style="color:#555;margin-bottom:24px;">Use the code below to complete your login. It expires in <strong>5 minutes</strong>.</p>
+        <div style="background:#fff;border:1px solid #e0e0e0;border-radius:6px;padding:24px;text-align:center;">
+          <span style="font-size:36px;font-weight:700;letter-spacing:12px;color:#1a1a1a;">${code}</span>
+        </div>
+        <p style="color:#999;font-size:12px;margin-top:24px;">If you did not request this, please ignore this email.</p>
+      </div>
+    `,
   };
 
+  const transporter = getTransporter();
   if (transporter) {
     await transporter.sendMail(message);
   } else {
-    console.log(`OTP for ${email}: ${code}`);
+    console.log(`[OTP] Email not configured. OTP for ${email}: ${code}`);
   }
 }
 
@@ -75,11 +84,18 @@ router.post("/login", async (req, res) => {
     const valid = await bcrypt.compare(password, user.password);
     if (!valid) return res.status(401).json({ error: "Invalid credentials." });
 
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: "7d" });
-    res.json({ token, user: { id: user.id, email: user.email, name: user.name, onboarded: user.onboarded } });
+    const code = generateOTP();
+    const expiresAt = new Date(Date.now() + 5 * 60 * 1000);
+    otpStore[email] = { code, expiresAt };
+    await sendOtpEmail(email, code);
+
+    const response = { message: "OTP sent to your email" };
+    if (!getTransporter()) response.otp = code;
+
+    res.json(response);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Unable to login." });
+    res.status(500).json({ error: "Unable to login.", detail: error.message });
   }
 });
 
@@ -101,12 +117,12 @@ router.post("/send-otp", async (req, res) => {
     await sendOtpEmail(email, code);
 
     const response = { message: "OTP sent" };
-    if (!transporter) response.otp = code;
+    if (!getTransporter()) response.otp = code;
 
     res.json(response);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Unable to send OTP." });
+    res.status(500).json({ error: "Unable to send OTP.", detail: error.message });
   }
 });
 

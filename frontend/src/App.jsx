@@ -7,6 +7,21 @@ import KnowledgeBase from "./pages/KnowledgeBase.jsx";
 import ScriptManagement from "./pages/ScriptManagement.jsx";
 import CampaignManagement from "./pages/CampaignManagement.jsx";
 import CampaignDetail from "./pages/CampaignDetail.jsx";
+import ForwardedCalls from "./pages/ForwardedCalls.jsx";
+import ForwardedCallDetail from "./pages/ForwardedCallDetail.jsx";
+import DeliveryReports from "./pages/DeliveryReports.jsx";
+import Layout from "./components/Layout.jsx";
+
+function ComingSoon({ title }) {
+  return (
+    <Layout>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "60vh", flexDirection: "column", gap: 12 }}>
+        <p style={{ fontSize: 22, fontWeight: 700, color: "#111827" }}>{title}</p>
+        <p style={{ fontSize: 14, color: "#6b7280" }}>This page is coming soon.</p>
+      </div>
+    </Layout>
+  );
+}
 import VerifyOTP from "./pages/VerifyOTP.jsx";
 import VerificationCompleted from "./pages/VerificationCompleted.jsx";
 import OTPError from "./pages/OTPError.jsx";
@@ -30,6 +45,11 @@ function App() {
       <Route path="/script" element={<PrivateRoute><ScriptManagement /></PrivateRoute>} />
       <Route path="/campaign" element={<PrivateRoute><CampaignManagement /></PrivateRoute>} />
       <Route path="/campaign/:id" element={<PrivateRoute><CampaignDetail /></PrivateRoute>} />
+      <Route path="/forwarding" element={<PrivateRoute><ForwardedCalls /></PrivateRoute>} />
+      <Route path="/forwarding/:id" element={<PrivateRoute><ForwardedCallDetail /></PrivateRoute>} />
+      <Route path="/reports" element={<PrivateRoute><DeliveryReports /></PrivateRoute>} />
+      <Route path="/provider" element={<PrivateRoute><ComingSoon title="Provider Management" /></PrivateRoute>} />
+      <Route path="/scriptwriter" element={<PrivateRoute><ComingSoon title="Script Writer" /></PrivateRoute>} />
     </Routes>
   );
 }

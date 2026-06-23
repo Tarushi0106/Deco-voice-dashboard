@@ -1,0 +1,138 @@
+/* ── Top bar ─────────────────────────────────────────── */
+.dr-topbar {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 22px; gap: 16px;
+}
+.dr-title    { font-size: 22px; font-weight: 800; color: #3464ff; margin: 0 0 4px; }
+.dr-subtitle { font-size: 13px; color: #6b7280; margin: 0; }
+
+/* ── Download dropdown trigger ───────────────────────── */
+.dr-dropdown-wrap { position: relative; }
+
+.dr-download-trigger {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #fff; color: #111827;
+  border: 1.5px solid #d1d5db; border-radius: 10px;
+  padding: 9px 16px; font-size: 13.5px; font-weight: 600;
+  cursor: pointer; transition: border-color 0.12s;
+  white-space: nowrap;
+}
+.dr-download-trigger:hover { border-color: #3464ff; color: #3464ff; }
+
+/* ── Dropdown panel ──────────────────────────────────── */
+.dr-dropdown {
+  position: absolute; top: calc(100% + 8px); right: 0;
+  background: #fff; border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  border: 1px solid #f0f0f0;
+  padding: 16px; width: 220px; z-index: 100;
+}
+
+.dr-drop-section {
+  font-size: 11.5px; font-weight: 700; color: #6b7280;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  margin: 0 0 8px;
+}
+
+.dr-drop-option {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 10px; font-size: 13px; color: #374151;
+  cursor: pointer; border-radius: 8px; user-select: none;
+  transition: background 0.1s;
+}
+.dr-drop-option:hover { background: #f0f4ff; }
+.dr-drop-option.selected {
+  background: #eff4ff;
+  color: #3464ff;
+  font-weight: 600;
+}
+.dr-drop-option input[type="radio"] { display: none; }
+.dr-drop-fmt-icon { display: flex; align-items: center; }
+
+.dr-drop-download-btn {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  width: 100%; margin-top: 16px;
+  background: #0d0c2e; color: #fff;
+  border: none; border-radius: 9px;
+  padding: 10px; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: background 0.12s;
+}
+.dr-drop-download-btn:hover { background: #1e1b4b; }
+
+/* ── Table ───────────────────────────────────────────── */
+.dr-table-card {
+  background: #fff; border-radius: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05); overflow: hidden;
+}
+
+.dr-table-head {
+  display: grid;
+  grid-template-columns: 2fr 1.6fr 1.2fr 1fr 1.1fr 1.2fr 2fr;
+  padding: 12px 24px;
+  border-bottom: 1px solid #f0f0f0;
+  min-width: 680px;
+}
+.dr-table-head span { font-size: 12px; font-weight: 600; color: #6b7280; }
+
+.dr-table-body { padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
+
+.dr-table-row {
+  display: grid;
+  grid-template-columns: 2fr 1.6fr 1.2fr 1fr 1.1fr 1.2fr 2fr;
+  padding: 12px 12px;
+  align-items: center;
+  min-width: 656px;
+  background: #fff;
+  border: 1px solid #f0f1f3;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: box-shadow 0.12s;
+}
+.dr-table-row:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+.dr-td { font-size: 13px; color: #374151; display: flex; align-items: center; }
+.dr-td-name { font-size: 14px; font-weight: 600; color: #111827; }
+.dr-td-id   { gap: 6px; color: #6b7280; font-size: 12.5px; }
+
+.dr-copy-btn {
+  background: none; border: none; cursor: pointer; padding: 2px;
+  display: flex; align-items: center;
+}
+
+/* Connected badge */
+.dr-badge-wrap { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+.dr-badge-text {
+  position: absolute;
+  font-size: 10px; font-weight: 700; color: #3464ff;
+  pointer-events: none;
+}
+
+/* Status pill */
+.dr-status-pill {
+  display: inline-flex; align-items: center;
+  padding: 4px 14px; border-radius: 99px;
+  font-size: 12px; font-weight: 600;
+}
+.dr-status-pill.completed { background: #ecfdf5; color: #16a34a; }
+.dr-status-pill.running   { background: #eff6ff; color: #3464ff; }
+.dr-status-pill.queued    { background: #fff7ed; color: #d97706; }
+
+/* Action buttons */
+.dr-td-action { gap: 8px; }
+
+.dr-view-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #0d0c2e; color: #fff;
+  border: none; border-radius: 8px;
+  padding: 7px 14px; font-size: 12.5px; font-weight: 600;
+  cursor: pointer; transition: background 0.12s; white-space: nowrap;
+}
+.dr-view-btn:hover { background: #1e1b4b; }
+
+.dr-dl-btn {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: #f3f4f6; border: none; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #374151; transition: background 0.12s; flex-shrink: 0;
+}
+.dr-dl-btn:hover { background: #e5e7eb; }

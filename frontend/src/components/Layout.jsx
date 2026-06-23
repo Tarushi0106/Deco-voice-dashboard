@@ -29,14 +29,19 @@ export default function Layout({ children, searchPlaceholder = "Search..." }) {
         const raw = p?.name || p?.email || "U";
         setInitials(raw[0].toUpperCase());
       })
-      .catch(() => {
-      localStorage.removeItem("token");
-      navigate("/login", { replace: true });
-    });
+      .catch((err) => {
+        if (err?._status === 401) {
+          localStorage.removeItem("token");
+          navigate("/login", { replace: true });
+        }
+        // network errors / server errors → stay on page, show default avatar
+      });
   }, []);
 
   const activeKey =
-    [...MAIN_NAV, ...ADDON_NAV].find((n) => location.pathname === n.path)?.key || "dashboard";
+    [...MAIN_NAV, ...ADDON_NAV].find(
+      (n) => location.pathname === n.path || location.pathname.startsWith(n.path + "/")
+    )?.key || "";
 
   const logout = () => {
     localStorage.removeItem("token");

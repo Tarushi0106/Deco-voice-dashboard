@@ -14,13 +14,19 @@ async function request(path, options = {}) {
     headers,
     body: options.body ? JSON.stringify(options.body) : undefined,
   });
-  const data = await response.json();
-  if (!response.ok) throw data;
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) throw { ...data, _status: response.status };
   return data;
 }
 
 export const signup = (payload) => request("/auth/signup", { method: "POST", body: payload });
-export const login = (payload) => request("/auth/login", { method: "POST", body: payload });
+
+export const login = (payload) => {
+  if (payload.email === MOCK_EMAIL) {
+    return Promise.resolve({ message: "OTP sent to " + MOCK_EMAIL, otp: MOCK_OTP });
+  }
+  return request("/auth/login", { method: "POST", body: payload });
+};
 
 export const sendOtp = (payload) => {
   if (payload.email === MOCK_EMAIL) {
