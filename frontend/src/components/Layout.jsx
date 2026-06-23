@@ -38,10 +38,14 @@ export default function Layout({ children, searchPlaceholder = "Search..." }) {
       });
   }, []);
 
-  const activeKey =
-    [...MAIN_NAV, ...ADDON_NAV].find(
-      (n) => location.pathname === n.path || location.pathname.startsWith(n.path + "/")
-    )?.key || "";
+  // If we navigated to a campaign detail FROM reports, keep "reports" highlighted
+  const fromReports = location.state?.from === "reports" && location.pathname.startsWith("/campaign/");
+
+  const activeKey = fromReports
+    ? "reports"
+    : [...MAIN_NAV, ...ADDON_NAV].find(
+        (n) => location.pathname === n.path || location.pathname.startsWith(n.path + "/")
+      )?.key || "";
 
   const logout = () => {
     localStorage.removeItem("token");
