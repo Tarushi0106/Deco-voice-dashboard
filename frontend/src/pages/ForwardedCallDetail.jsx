@@ -21,12 +21,24 @@ const DETAIL_DATA = {
   },
 };
 
-const TRANSCRIPT = [
-  { speaker: "Human agent", text: "Content will appear here. Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here." },
-  { speaker: "Customer",    text: "Content will appear here. Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here." },
-  { speaker: "Human agent", text: "Content will appear here. Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here." },
-  { speaker: "Customer",    text: "Content will appear here. Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here.Content will appear here." },
-];
+const TRANSCRIPTS = {
+  0: [
+    { speaker: "Human agent", text: "Hello Rahul, thank you for staying on the line. My name is Priya. I understand you'd like to schedule an appointment." },
+    { speaker: "Customer",    text: "Yes, I'd like to book a consultation for this week." },
+    { speaker: "Human agent", text: "Would you prefer a morning or afternoon slot?" },
+    { speaker: "Customer",    text: "Morning would be better." },
+    { speaker: "Human agent", text: "We have availability on Wednesday at 10:00 AM and Thursday at 11:30 AM. Which would work best for you?" },
+    { speaker: "Customer",    text: "Wednesday at 10 AM works great." },
+    { speaker: "Human agent", text: "Perfect! I've booked you in for Wednesday at 10:00 AM. You'll receive a confirmation on your registered email shortly." },
+  ],
+  1: [
+    { speaker: "Human agent", text: "Hello, thank you for contacting customer support. My name is Ananya. How can I assist you today?" },
+    { speaker: "Customer",    text: "Hi, I'm having trouble with my recent order. It hasn't been delivered yet." },
+    { speaker: "Human agent", text: "I'm sorry to hear that. Could you please provide me with your order ID so I can look into this?" },
+    { speaker: "Customer",    text: "Sure, it's OD-2024-88421." },
+    { speaker: "Human agent", text: "Thank you. I can see your order is currently out for delivery and should arrive by end of day today." },
+  ],
+};
 
 const META_ICONS = {
   campaign: (
@@ -62,6 +74,7 @@ export default function ForwardedCallDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const detail = DETAIL_DATA[id] || DETAIL_DATA[0];
+  const transcript = TRANSCRIPTS[id] || TRANSCRIPTS[0];
 
   return (
     <Layout searchPlaceholder="campaign">
@@ -128,7 +141,7 @@ export default function ForwardedCallDetail() {
         <div className="fcd-transcript-card">
           <h3 className="fcd-card-title">Calls detail</h3>
           <div className="fcd-transcript-list">
-            {TRANSCRIPT.map((entry, i) => (
+            {transcript.map((entry, i) => (
               <div key={i} className="fcd-transcript-entry">
                 <p className="fcd-speaker">{entry.speaker}</p>
                 <p className="fcd-speech">{entry.text}</p>

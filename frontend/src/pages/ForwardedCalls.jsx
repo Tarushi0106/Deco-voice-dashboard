@@ -113,7 +113,7 @@ export default function ForwardedCalls() {
           {rows.length === 0 ? (
             <p className="fc-empty">No records found.</p>
           ) : rows.map((row) => (
-            <div key={row.id} className="fc-table-row">
+            <div key={row.id} className="fc-table-row" onClick={() => navigate(`/forwarding/${row.id}`)} style={{ cursor: "pointer" }}>
               <span className="fc-td fc-td-name">{row.campaign}</span>
               <span className="fc-td">{row.contact}</span>
               <span className="fc-td">{row.forwardedTo}</span>
@@ -124,7 +124,7 @@ export default function ForwardedCalls() {
                 </span>
               </span>
               <span className="fc-td">
-                <button className="fc-view-btn" onClick={() => navigate(`/forwarding/${row.id}`)}>
+                <button className="fc-view-btn" onClick={(e) => { e.stopPropagation(); navigate(`/forwarding/${row.id}`); }}>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
                   </svg>
