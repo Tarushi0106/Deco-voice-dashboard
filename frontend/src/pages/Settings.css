@@ -1,0 +1,398 @@
+/* ── Page header ─────────────────────────────────────── */
+.st-page-header {
+  margin-bottom: 20px;
+}
+.st-page-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #3464ff;
+  margin: 0 0 4px;
+}
+.st-page-subtitle {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ── Body layout ─────────────────────────────────────── */
+.st-body {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+/* ── Left nav ────────────────────────────────────────── */
+.st-nav {
+  width: 210px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.st-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.12s, color 0.12s;
+}
+.st-nav-item:hover { background: #f3f4f6; }
+.st-nav-item.active {
+  background: #0d0c2e;
+  color: #fff;
+}
+.st-nav-item.active .st-nav-icon svg { stroke: #fff; }
+
+.st-nav-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ── Right content ───────────────────────────────────── */
+.st-content-wrap {
+  flex: 1;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  min-height: 400px;
+}
+
+/* ── Section ─────────────────────────────────────────── */
+.st-section {
+  padding: 28px 32px;
+}
+
+.st-section-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #3464ff;
+  margin: 0 0 4px;
+}
+.st-section-sub {
+  font-size: 12.5px;
+  color: #6b7280;
+  margin: 0 0 24px;
+}
+
+/* ── Form grid ───────────────────────────────────────── */
+.st-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 24px;
+}
+
+.st-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.st-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.st-input {
+  width: 100%;
+  padding: 10px 13px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 9px;
+  font-size: 13.5px;
+  color: #111827;
+  background: #fff;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.12s;
+}
+.st-input:focus { border-color: #3464ff; }
+
+/* ── Password ────────────────────────────────────────── */
+.st-pass-wrap {
+  position: relative;
+}
+.st-pass-wrap .st-input {
+  padding-right: 42px;
+}
+.st-pass-eye {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+/* ── Select ──────────────────────────────────────────── */
+.st-select-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.st-select {
+  width: 100%;
+  padding: 10px 34px 10px 13px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 9px;
+  font-size: 13.5px;
+  color: #111827;
+  background: #fff;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: border-color 0.12s;
+}
+.st-select:focus { border-color: #3464ff; }
+.st-chevron {
+  position: absolute;
+  right: 11px;
+  pointer-events: none;
+}
+
+/* ── Voice buttons ───────────────────────────────────── */
+.st-voice-field {
+  margin-top: 20px;
+}
+.st-voice-btns {
+  display: flex;
+  gap: 12px;
+  margin-top: 2px;
+}
+.st-voice-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #374151;
+  transition: border-color 0.12s, background 0.12s;
+  min-width: 130px;
+}
+.st-voice-btn:hover { border-color: #d1d5db; }
+
+/* Male active */
+.st-voice-btn.male.active {
+  border-color: #3464ff;
+  background: #eff4ff;
+  color: #3464ff;
+}
+.st-voice-btn.male.active .st-voice-play svg { fill: #3464ff; }
+
+/* Female active */
+.st-voice-btn.female.active {
+  border-color: #f43f5e;
+  background: #fff1f3;
+  color: #f43f5e;
+}
+.st-voice-btn.female.active .st-voice-play svg { fill: #f43f5e; }
+
+.st-voice-av {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.male-av { background: #dbeafe; color: #3464ff; }
+.st-voice-btn.male.active .male-av { background: #3464ff; color: #fff; }
+.female-av { background: #ffe4e6; color: #f43f5e; }
+.st-voice-btn.female.active .female-av { background: #f43f5e; color: #fff; }
+
+.st-voice-name { flex: 1; }
+.st-voice-play { display: flex; align-items: center; color: #9ca3af; }
+.st-voice-play svg { fill: #9ca3af; }
+
+/* ── Toggle ──────────────────────────────────────────── */
+.st-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #f3f4f6;
+}
+.st-toggle {
+  width: 42px; height: 24px;
+  border-radius: 99px;
+  background: #d1d5db;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+  flex-shrink: 0;
+  padding: 0;
+}
+.st-toggle.on { background: #3464ff; }
+.st-toggle-thumb {
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: left 0.2s;
+}
+.st-toggle.on .st-toggle-thumb { left: 21px; }
+
+/* ── Team: role dropdown ─────────────────────────────── */
+.st-role-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 13px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 9px;
+  font-size: 13.5px;
+  color: #111827;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.12s;
+  box-sizing: border-box;
+}
+.st-role-btn:focus { outline: none; border-color: #3464ff; }
+
+.st-role-drop {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0; right: 0;
+  background: #fff;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 9px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  z-index: 20;
+  overflow: hidden;
+}
+.st-role-opt {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  text-align: left;
+  background: none;
+  border: none;
+  font-size: 13.5px;
+  color: #374151;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.st-role-opt:hover { background: #f3f4f6; }
+.st-role-opt.sel { background: #eff4ff; color: #3464ff; font-weight: 600; }
+
+/* ── Team: access level ──────────────────────────────── */
+.st-access {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.st-access-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+.st-access-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #374151;
+  font-weight: 500;
+}
+
+.st-invite-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 28px;
+}
+.st-invite-btn {
+  background: #0d0c2e;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 36px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.st-invite-btn:hover { background: #1e1b4b; }
+
+/* ── Help and support ────────────────────────────────── */
+.st-help-cards {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+.st-help-card {
+  flex: 1;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.st-help-icon-wrap {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: #eff4ff;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 4px;
+}
+.st-help-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+.st-help-card-desc {
+  font-size: 12.5px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+.st-help-btn {
+  align-self: flex-start;
+  background: #0d0c2e;
+  color: #fff;
+  border: none;
+  border-radius: 9px;
+  padding: 9px 22px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: background 0.12s;
+}
+.st-help-btn:hover { background: #1e1b4b; }
+
+@media (max-width: 900px) {
+  .st-body { flex-direction: column; }
+  .st-nav { width: 100%; }
+  .st-form-grid { grid-template-columns: 1fr; }
+  .st-help-cards { flex-direction: column; }
+}

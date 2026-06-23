@@ -43,7 +43,7 @@ export default function Layout({ children, searchPlaceholder = "Search..." }) {
 
   const activeKey = fromReports
     ? "reports"
-    : [...MAIN_NAV, ...ADDON_NAV].find(
+    : [...MAIN_NAV, ...ADDON_NAV, { key: "settings", path: "/settings" }].find(
         (n) => location.pathname === n.path || location.pathname.startsWith(n.path + "/")
       )?.key || "";
 
@@ -86,8 +86,11 @@ export default function Layout({ children, searchPlaceholder = "Search..." }) {
 
         <div className="dv-nav-section">
           <span className="dv-nav-label">GENERAL</span>
-          <button className="dv-nav-item" onClick={logout}>
-            <Icon name="settings" size={16} color="#9ca3af" />
+          <button
+            className={`dv-nav-item${activeKey === "settings" ? " active" : ""}`}
+            onClick={() => navigate("/settings")}
+          >
+            <Icon name="settings" size={16} color={activeKey === "settings" ? "#fff" : "#9ca3af"} />
             Settings
           </button>
         </div>

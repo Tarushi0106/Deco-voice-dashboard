@@ -27,6 +27,7 @@ function ComingSoon({ title }) {
 import VerifyOTP from "./pages/VerifyOTP.jsx";
 import VerificationCompleted from "./pages/VerificationCompleted.jsx";
 import OTPError from "./pages/OTPError.jsx";
+import Settings from "./pages/Settings.jsx";
 
 function PrivateRoute({ children }) {
   return localStorage.getItem("token") ? children : <Navigate to="/login" replace />;
@@ -52,6 +53,7 @@ function App() {
       <Route path="/forwarding/:id" element={<PrivateRoute><ForwardedCallDetail /></PrivateRoute>} />
       <Route path="/reports" element={<PrivateRoute><DeliveryReports /></PrivateRoute>} />
       <Route path="/provider" element={<PrivateRoute><ProviderManagement /></PrivateRoute>} />
+      <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
       <Route path="/scriptwriter" element={<PrivateRoute><ComingSoon title="Script Writer" /></PrivateRoute>} />
     </Routes>
   );
