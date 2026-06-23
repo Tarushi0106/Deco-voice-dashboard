@@ -17,7 +17,6 @@ function OTPInput({ value, onChange }) {
 export default function VerifyOTP() {
   const [otp, setOtp] = useState(["", "", "", ""]);
   const [message, setMessage] = useState("");
-  const [otpCode, setOtpCode] = useState(localStorage.getItem("otpCode") || "");
   const [resendCountdown, setResendCountdown] = useState(0);
   const [resendError, setResendError] = useState("");
   const navigate = useNavigate();
@@ -54,13 +53,6 @@ export default function VerifyOTP() {
       setOtpCode("");
       const result = await sendOtp({ email });
       setMessage(result.message || "OTP resent.");
-      if (result.otp) {
-        localStorage.setItem("otpCode", result.otp);
-        setOtpCode(result.otp);
-      } else {
-        localStorage.removeItem("otpCode");
-        setOtpCode("");
-      }
       setResendCountdown(60);
     } catch (err) {
       setResendError(err.error || "Unable to resend OTP.");
@@ -96,7 +88,6 @@ export default function VerifyOTP() {
           </div>
 
           {message && <p className="muted">{message}</p>}
-          {otpCode && <p className="error-text">For local testing, your OTP is {otpCode}</p>}
 
           <button className="primary" type="submit">Verify OTP</button>
         </form>
