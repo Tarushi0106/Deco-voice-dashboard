@@ -56,7 +56,8 @@ async function sendOtpEmail(email, code) {
 
 router.post("/signup", async (req, res) => {
   try {
-    const { email, password, name } = req.body;
+    const { email: rawEmail, password, name } = req.body;
+    const email = rawEmail?.toLowerCase().trim();
     if (!email || !password) return res.status(400).json({ error: "Email and password are required." });
 
     const existing = await prisma.user.findUnique({ where: { email } });
@@ -75,7 +76,8 @@ router.post("/signup", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email: rawEmail, password } = req.body;
+    const email = rawEmail?.toLowerCase().trim();
     if (!email || !password) return res.status(400).json({ error: "Email and password are required." });
 
     const user = await prisma.user.findUnique({ where: { email } });
@@ -128,7 +130,8 @@ router.post("/send-otp", async (req, res) => {
 
 router.post("/verify-otp", async (req, res) => {
   try {
-    const { email, code } = req.body;
+    const { email: rawEmail, code } = req.body;
+    const email = rawEmail?.toLowerCase().trim();
     if (!email || !code) return res.status(400).json({ error: "Email and OTP code are required." });
 
     const record = otpStore[email];

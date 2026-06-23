@@ -1,6 +1,6 @@
 ﻿const API_BASE = "http://localhost:4000/api";
 
-const MOCK_EMAIL = "admin@shaurryatele.com";
+const MOCK_EMAIL = "admin@gmail.com";
 const MOCK_OTP = "1234";
 const MOCK_TOKEN = "mock-admin-token-deco-voice";
 
