@@ -210,12 +210,12 @@ export default function DeliveryReports() {
 
         <div className="dr-table-body">
           {REPORTS.map((row) => (
-            <div key={row.id} className="dr-table-row">
+            <div key={row.id} className="dr-table-row" onClick={() => navigate(`/campaign/${row.id}`, { state: { from: "reports" } })} style={{ cursor: "pointer" }}>
               <span className="dr-td dr-td-name">{row.campaign}</span>
 
               <span className="dr-td dr-td-id">
                 {row.campaignId}
-                <button className="dr-copy-btn" onClick={() => handleCopy(row.id, row.campaignId)}>
+                <button className="dr-copy-btn" onClick={(e) => { e.stopPropagation(); handleCopy(row.id, row.campaignId); }}>
                   {copied === row.id
                     ? <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
                     : <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
@@ -238,13 +238,13 @@ export default function DeliveryReports() {
               <span className="dr-td">{row.date}</span>
 
               <span className="dr-td dr-td-action">
-                <button className="dr-view-btn" onClick={() => navigate(`/campaign/${row.id}`, { state: { from: "reports" } })}>
+                <button className="dr-view-btn" onClick={(e) => { e.stopPropagation(); navigate(`/campaign/${row.id}`, { state: { from: "reports" } }); }}>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
                   </svg>
                   View details
                 </button>
-                <button className="dr-dl-btn" title="Download">
+                <button className="dr-dl-btn" title="Download" onClick={(e) => e.stopPropagation()}>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
                   </svg>
