@@ -10,6 +10,7 @@ import CampaignDetail from "./pages/CampaignDetail.jsx";
 import ForwardedCalls from "./pages/ForwardedCalls.jsx";
 import ForwardedCallDetail from "./pages/ForwardedCallDetail.jsx";
 import DeliveryReports from "./pages/DeliveryReports.jsx";
+import ProviderManagement from "./pages/ProviderManagement.jsx";
 import Layout from "./components/Layout.jsx";
 
 function ComingSoon({ title }) {
@@ -48,7 +49,7 @@ function App() {
       <Route path="/forwarding" element={<PrivateRoute><ForwardedCalls /></PrivateRoute>} />
       <Route path="/forwarding/:id" element={<PrivateRoute><ForwardedCallDetail /></PrivateRoute>} />
       <Route path="/reports" element={<PrivateRoute><DeliveryReports /></PrivateRoute>} />
-      <Route path="/provider" element={<PrivateRoute><ComingSoon title="Provider Management" /></PrivateRoute>} />
+      <Route path="/provider" element={<PrivateRoute><ProviderManagement /></PrivateRoute>} />
       <Route path="/scriptwriter" element={<PrivateRoute><ComingSoon title="Script Writer" /></PrivateRoute>} />
     </Routes>
   );
