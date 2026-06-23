@@ -16,11 +16,6 @@ export default function Login() {
     try {
       const result = await login({ email, password });
       localStorage.setItem("otpEmail", email);
-      if (result.otp) {
-        localStorage.setItem("otpCode", result.otp);
-      } else {
-        localStorage.removeItem("otpCode");
-      }
       navigate("/verify-otp");
     } catch (err) {
       setError(err.error || "Invalid credentials.");
