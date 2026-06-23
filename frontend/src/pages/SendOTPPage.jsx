@@ -1,30 +1,29 @@
 import { useState } from "react";
-import { login } from "../api/auth.js";
+import { sendOtp } from "../api/auth.js";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
-  const [email, setEmail]       = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError]       = useState("");
-  const [loading, setLoading]   = useState(false);
-  const navigate                = useNavigate();
+export default function SendOTPPage() {
+  const loginEmail          = localStorage.getItem("loginEmail") || "";
+  const [email, setEmail]   = useState(loginEmail);
+  const [error, setError]   = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate            = useNavigate();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email.trim()) return;
     setLoading(true);
     setError("");
     try {
-      await login({ email, password });
-      localStorage.setItem("loginEmail", email);
-      navigate("/send-otp");
+      await sendOtp({ email: email.trim() });
+      localStorage.setItem("otpEmail", email.trim());
+      navigate("/verify-otp");
     } catch (err) {
-      setError(err.error || "Invalid credentials.");
+      setError(err.error || "Unable to send OTP. Please try again.");
     } finally {
       setLoading(false);
     }
   };
-
-  const canSubmit = email.trim() && password.trim() && !loading;
 
   return (
     <div className="auth-shell">
@@ -40,27 +39,17 @@ export default function Login() {
         </div>
 
         <h3 style={{ marginTop: "8px" }}>Welcome to DecoVoice</h3>
-        <p className="muted">Log in to manage your AI-powered calling system</p>
+        {loginEmail && (
+          <p className="muted">Logged in as {loginEmail}</p>
+        )}
 
         <form onSubmit={handleSubmit} className="auth-form">
-          <label>Username</label>
+          <label>Email</label>
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
-            placeholder="Enter Username"
-            required
-          />
-
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <label style={{ margin: 0 }}>Password</label>
-            <a href="#" className="forgot-link">Forgot password?</a>
-          </div>
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            placeholder="Enter Password"
+            placeholder="Enter email to receive OTP"
             required
           />
 
@@ -69,10 +58,10 @@ export default function Login() {
           <button
             className="primary"
             type="submit"
-            disabled={!canSubmit}
-            style={{ opacity: canSubmit ? 1 : 0.45, cursor: canSubmit ? "pointer" : "not-allowed" }}
+            disabled={!email.trim() || loading}
+            style={{ opacity: email.trim() && !loading ? 1 : 0.45, cursor: email.trim() && !loading ? "pointer" : "not-allowed" }}
           >
-            {loading ? "Verifying..." : "Continue"}
+            {loading ? "Sending..." : "Send OTP"}
           </button>
         </form>
 

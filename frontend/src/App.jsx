@@ -10,6 +10,7 @@ import CampaignDetail from "./pages/CampaignDetail.jsx";
 import ForwardedCalls from "./pages/ForwardedCalls.jsx";
 import ForwardedCallDetail from "./pages/ForwardedCallDetail.jsx";
 import DeliveryReports from "./pages/DeliveryReports.jsx";
+import SendOTPPage from "./pages/SendOTPPage.jsx";
 import ProviderManagement from "./pages/ProviderManagement.jsx";
 import Layout from "./components/Layout.jsx";
 
@@ -37,6 +38,7 @@ function App() {
       <Route path="/" element={<Navigate to={localStorage.getItem("token") ? "/dashboard" : "/login"} />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/send-otp" element={<SendOTPPage />} />
       <Route path="/verify-otp" element={<VerifyOTP />} />
       <Route path="/verified" element={<VerificationCompleted />} />
       <Route path="/otp-error" element={<OTPError />} />

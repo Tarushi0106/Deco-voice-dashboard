@@ -86,15 +86,7 @@ router.post("/login", async (req, res) => {
     const valid = await bcrypt.compare(password, user.password);
     if (!valid) return res.status(401).json({ error: "Invalid credentials." });
 
-    const code = generateOTP();
-    const expiresAt = new Date(Date.now() + 5 * 60 * 1000);
-    otpStore[email] = { code, expiresAt };
-    await sendOtpEmail(email, code);
-
-    const response = { message: "OTP sent to your email" };
-    if (!getTransporter()) response.otp = code;
-
-    res.json(response);
+    res.json({ success: true, email: user.email, name: user.name });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Unable to login.", detail: error.message });
